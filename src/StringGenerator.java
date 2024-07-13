@@ -1,7 +1,7 @@
 package src;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.w3c.dom.ranges.Range;
 
@@ -13,15 +13,18 @@ public class StringGenerator {
      * Generates the random string using the range of characters in the characters field
      * @return
      */
-    public String getRandomString(){
+    public String getRandomString(int len){
         String rnadomString = "";
-        ArrayList<String> list = new ArrayList<String>();
-        for (Range range : characters) {
-            list.add(range.toString());
+        Random random = new Random();
+        while(-- len > 0){
+            int index = random.nextInt(len);
+            if(index < 26){
+                rnadomString += (char)(97 + index);
+            }else {
+                rnadomString += (char)(65 + index - 26);
+            }
         }
-        for(String str : list){
-            System.out.println(str);
-        }
+
         return rnadomString;
     }
     /**
